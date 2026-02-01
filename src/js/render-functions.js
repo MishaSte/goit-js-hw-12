@@ -8,7 +8,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 const loaderEl = document.querySelector('.loader');
-
+const loadButt = document.querySelector('.load-more-btn');
 export function createGallery(images) {
   const galleryItems = [];
 
@@ -71,4 +71,21 @@ export function showLoader() {
 }
 export function hideLoader() {
   loaderEl.classList.add('is-hidden');
+}
+export function hideLoadMoreButton() {
+  loadButt.classList.add('is-hidden');
+}
+export function showLoadMoreButton() {
+  loadButt.classList.remove('is-hidden');
+}
+export function smoothScroll() {
+  const firstCard = document.querySelector('.gallery-item');
+  if (!firstCard) return;
+
+  const cardHeight = firstCard.getBoundingClientRect().height;
+
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
